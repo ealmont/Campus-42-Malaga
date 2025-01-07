@@ -1,36 +1,76 @@
-NAME = pipex
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gcollet <gcollet@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/08 11:07:37 by gcollet           #+#    #+#              #
+#    Updated: 2022/02/06 10:24:56 by gcollet          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = gcc
+PROG	= pipex
+PROG_B  = pipex_bonus
 
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address
+SRCS 	= srcs/pipex.c srcs/utils.c
+OBJS 	= ${SRCS:.c=.o}
+MAIN	= srcs/pipex.c
 
-RM = rm -rf
+SRCS_B	= srcs/pipex_bonus.c srcs/utils.c srcs/utils_bonus.c
+OBJS_B	= ${SRCS_B:.c=.o}
+MAIN_B	= srcs/pipex_bonus.c
 
-SRCS = 	src/pipex.c\
-		src/utils.c\
-		libft/libft.a\
+HEADER	= -Iincludes
 
-SRCS_BONUS = 	src_bonus/pipex_bonus.c\
-				src_bonus/utils_bonus.c\
-				libft/libft.a\
+CC 		= gcc
+CFLAGS 	= -Wall -Wextra -Werror -g
 
-$(NAME) :
-	make all -C libft
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+.c.o:		%.o : %.c
+					@gcc ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
+
+all: 		${PROG}
+
+${PROG}:	${OBJS}
+					@echo "\033[33m----Compiling lib----"
+					@make re -C ./libft
+					@$(CC) ${OBJS} -Llibft -lft -o ${PROG}
+					@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
 
 
-all : $(NAME)
+bonus:		${PROG_B}
 
-fclean : clean
-	$(RM) $(NAME)
-	make fclean -C libft
+${PROG_B}:	${OBJS_B}
+					@echo "\033[33m----Compiling lib----"
+					@make re -C ./libft
+					@$(CC) ${OBJS_B} -Llibft -lft -o ${PROG_B}
+					@echo "\033[32mPipex Bonus Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
 
-clean :
-	$(RM) $(NAME)
-	make clean -C libft
+clean:
+					@make clean -C ./libft
+					@rm -f ${OBJS} ${OBJS_B}
 
-re : fclean all
+fclean: 	clean
+					@make fclean -C ./libft
+					@rm -f $(NAME)
+					@rm -f ${PROG}
+					@echo "\n\033[31mDeleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n"
 
-bonus : clean
-	make all -C libft
-	gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
+re:			fclean all
+
+re_bonus:	fclean bonus
+
+party:
+					@printf "\033c"
+					@echo "\n\033[35m♪┏(・o･)┛♪"
+					@sleep 1
+					@printf "\033c"
+					@echo "\033[1;33m♪┗(・o･)┓♪"
+					@sleep 1
+					@printf "\033c"
+					@echo "\n\033[36m♪┏(・o･)┛♪"
+					@sleep 1
+					@printf "\033c"
+					@echo "\033[34m♪┗(・o･)┓♪\n"
+
+.PHONY: all clean fclean re re_bonus bonus party
