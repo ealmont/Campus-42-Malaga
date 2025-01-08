@@ -3,39 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 14:49:15 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/17 10:15:29 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/03 19:34:14 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/03 19:36:40 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The strlcat() function appends the NUL-terminated string src to the end of 
-dst. It will append at most size - strlen(dst) - 1 bytes, NUL-terminating the 
-result. */
-/* The strlcat() functions return the total length of the string they tried 
-to create that means the initial length of dst plus the length of src. */
-
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	n;
-	size_t	m;
-	size_t	p;
+	size_t	src_len;
+	size_t	dst_len;
 
-	m = 0;
-	n = ft_strlen(dst);
-	p = ft_strlen(src);
-	if (size == 0)
-		return (p);
-	while ((src[m] != '\0') && ((n + m) < (size - 1)))
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	if (dst_len >= dstsize)
+		return (dstsize + src_len);
+	if (src_len < dstsize - dst_len)
+		ft_memcpy(dst + dst_len, src, src_len + 1);
+	else
 	{
-		dst[n + m] = src[m];
-		m++;
+		ft_memcpy(dst + dst_len, src, dstsize - dst_len - 1);
+		dst[dstsize - 1] = '\0';
 	}
-	dst[n + m] = '\0';
-	if (size > n)
-		return (n + p);
-	return (size + p);
+	return (dst_len + src_len);
 }

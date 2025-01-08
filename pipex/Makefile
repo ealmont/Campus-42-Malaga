@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gcollet <gcollet@student.42.fr>            +#+  +:+       +#+         #
+#    By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/08 11:07:37 by gcollet           #+#    #+#              #
-#    Updated: 2022/02/06 10:24:56 by gcollet          ###   ########.fr        #
+#    Created: 2025/01/08 18:04:41 by ealmonte          #+#    #+#              #
+#    Updated: 2025/01/08 18:08:59 by ealmonte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ ${PROG}:	${OBJS}
 					@echo "\033[33m----Compiling lib----"
 					@make re -C ./libft
 					@$(CC) ${OBJS} -Llibft -lft -o ${PROG}
-					@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
+					@echo "\033[32mPipex Compiled! 🚰 🌟|====|🌟 \033[0m\n"
 
 
 bonus:		${PROG_B}
@@ -44,7 +44,7 @@ ${PROG_B}:	${OBJS_B}
 					@echo "\033[33m----Compiling lib----"
 					@make re -C ./libft
 					@$(CC) ${OBJS_B} -Llibft -lft -o ${PROG_B}
-					@echo "\033[32mPipex Bonus Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
+					@echo "\033[32mPipex Bonus Compiled! 🚰 🌟|====|🌟 \033[0m\n"
 
 clean:
 					@make clean -C ./libft
@@ -54,7 +54,7 @@ fclean: 	clean
 					@make fclean -C ./libft
 					@rm -f $(NAME)
 					@rm -f ${PROG}
-					@echo "\n\033[31mDeleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n"
+					@echo "\n\033[31mDeleting EVERYTHING!🚱 ❌|====|❌ \033[0m\n"
 
 re:			fclean all
 

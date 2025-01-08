@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*    ft_tolower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 11:01:50 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/07 11:05:35 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/07 18:03:59 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/07 18:04:05 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* tolower() convertit la lettre c en minuscule si c'est possible. */
-/* La valeur renvoyée est celle de la lettre convertie, ou bien c si la 
-conversion n'était pas possible. */
 
 #include "libft.h"
 
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		c += 32;
+		return (c + 32);
 	return (c);
 }

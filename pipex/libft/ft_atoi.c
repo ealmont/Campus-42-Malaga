@@ -3,42 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/08 11:53:08 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/12 17:33:21 by gcollet          ###   ########.fr       */
+/*   Created: 2024/09/22 15:46:26 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/08 16:37:13 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* La fonction atoi() convertit le début de la chaîne pointée par nptr en 
-entier de type int . */
-/* VALEUR RENVOYÉE : Le résultat de la conversion.   */
-
-#include "libft.h"
-
-int	ft_atoi(const char *nptr)
+int	ft_atoi(char *str)
 {
-	long	num;
-	int		sign;
-	int		i;
+	int	result;
+	int	sign;
 
-	i = 0;
+	result = 0;
 	sign = 1;
-	num = 0;
-	while ((nptr[i] >= '\t' && nptr[i] <= '\r') || nptr[i] == ' ')
-		nptr++;
-	if (nptr[i] == '-')
-		sign = sign * -1;
-	if (nptr[i] == '+' || nptr[i] == '-')
-		nptr++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		num = (num * 10) + nptr[i] - '0';
-		nptr++;
-		if (num * sign > 2147483647)
-			return (-1);
-		if (num * sign < -2147483648)
-			return (0);
+		result = result * 10 + *str - '0';
+		str++;
 	}
-	return (num * sign);
+	return (sign * result);
 }

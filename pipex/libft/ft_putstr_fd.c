@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/11 11:17:23 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/13 15:59:39 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/07 19:58:26 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/07 20:03:09 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Écrit la chaine de caractères ’s’ sur le file descriptor donné. */
-
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-	if (!s)
-		return ;
-	while (*s)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		ft_putchar_fd(*s, fd);
-		s++;
+		write(fd, &str[i], 1);
+		i++;
 	}
 }

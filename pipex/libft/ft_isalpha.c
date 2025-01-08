@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/06 15:08:39 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/06 15:45:10 by gcollet          ###   ########.fr       */
+/*   Created: 2024/09/15 14:30:37 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/02 14:02:24 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Vérifie si l'on a un caractère alphabétique. */
-/* Les valeurs renvoyées sont non nulles si le caractère c entre dans la
-catégorie testée, et zéro sinon */
-
 #include "libft.h"
+#include "stdio.h"
 
 int	ft_isalpha(int c)
 {
@@ -22,3 +19,10 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
+/* int main (void)
+ {
+    int c;
+    c = ft_isalpha('1');
+    printf("%d", c);
+    return (0);
+ } */

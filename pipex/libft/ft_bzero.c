@@ -3,28 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 15:00:08 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/08 12:41:53 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/07 17:38:56 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/07 17:39:00 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* La fonction bzero() met à 0 (octets contenant « \0 ») les n premiers octets
-du bloc pointé par s. */
-/* VALEUR RENVOYÉE : Aucune. */
 
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*str;
+	char	*tmp_ptr;
 
-	str = (char *)s;
-	while (n)
+	tmp_ptr = (char *)s;
+	while (n > 0)
 	{
-		*str = 0;
-		str++;
+		*tmp_ptr++ = '\0';
 		n--;
 	}
 }

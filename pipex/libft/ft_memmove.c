@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/06 10:37:42 by gcollet           #+#    #+#             */
-/*   Updated: 2022/02/06 10:00:40 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/03 18:10:40 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/03 18:14:39 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* La fonction memmove() copie n octets depuis la zone mémoire src vers la zone 
-mémoire dest. Les deux zones peuvent se chevaucher : la copie se passe comme 
-si les octets de src étaient d'abord copiés dans une zone temporaire qui ne 
-chevauche ni src ni dest, et les octets sont ensuite copiés de la zone 
-temporaire vers dest.  */
-/* La fonction memmove() renvoie un pointeur sur dest. */
-
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char			*str_dest;
-	char			*str_src;
+	char	*c_src;
+	char	*c_dst;
+	size_t	i;
 
-	str_dest = (char *)dest;
-	str_src = (char *)src;
-	if (str_dest > str_src)
+	if (!dst && !src)
+		return (NULL);
+	c_src = (char *)src;
+	c_dst = (char *)dst;
+	i = 0;
+	if (c_dst > c_src)
+		while (len-- > 0)
+			c_dst[len] = c_src[len];
+	else
 	{
-		while (n--)
-			str_dest[n] = str_src[n];
+		while (i < len)
+		{
+			c_dst[i] = c_src[i];
+			i++;
+		}
 	}
-	else if (str_dest < str_src)
-		ft_memcpy(dest, src, n);
-	return (dest);
+	return (dst);
 }

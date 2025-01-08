@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 11:38:19 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/11 14:49:22 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/03 19:54:37 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/03 19:55:14 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* La fonction strrchr() renvoie un pointeur sur la dernière occurrence du 
-caractère c dans la chaîne s. */
-/* La fonction strrchr() renvoie un pointeur sur le caractère correspondant, 
-ou NULL si le caractère n'a pas été trouvé. */
 
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	*res;
+	char	cc;
 
+	cc = (char)c;
+	res = NULL;
 	i = 0;
 	while (s[i])
-		i++;
-	if (c == '\0')
-		return ((char *)s + i);
-	while (i--)
 	{
-		if (s[i] == c)
-			return ((char *)(s + i));
+		if (s[i] == cc)
+			res = (char *)&s[i];
+		i++;
 	}
-	return (0);
+	if (s[i] == cc)
+		res = (char *)&s[i];
+	return (res);
 }

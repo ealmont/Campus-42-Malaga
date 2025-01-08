@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 16:01:16 by gcollet           #+#    #+#             */
-/*   Updated: 2022/02/06 10:25:26 by gcollet          ###   ########.fr       */
+/*   Created: 2025/01/07 19:52:55 by ealmonte          #+#    #+#             */
+/*   Updated: 2025/01/08 18:03:59 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	usage(void)
 {
 	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
 	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("    ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
+	ft_putstr_fd("   ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...><file>\n",
+		1);
 	exit(EXIT_SUCCESS);
 }
 

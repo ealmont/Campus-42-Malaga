@@ -3,42 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/10 10:51:58 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/13 16:02:24 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/03 20:10:18 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/03 20:13:24 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Alloue (avec malloc()) et retourne une chaine de caractères issue de la 
-chaine ’s’. Cette nouvelle chaine commence à l’index ’start’ et a pour taille 
-maximale ’len’ */
-/* La nouvelle chaine de caractere. NULL si l’allocation échoue. */
-
 #include "libft.h"
+#include <stddef.h>
+#include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	char	*tab;
 	size_t	i;
-	size_t	j;
+	char	*str;
 
-	i = 0;
-	j = 0;
 	if (!s)
 		return (NULL);
-	tab = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!tab)
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
 		return (NULL);
-	while (s[i])
+	i = 0;
+	while (i < len)
 	{
-		if (i >= start && j < len)
-		{
-			tab[j] = s[i];
-			j++;
-		}
+		str[i] = s[start + i];
 		i++;
 	}
-	tab[j] = '\0';
-	return (tab);
+	return (str);
 }

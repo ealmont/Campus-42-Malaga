@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 10:27:30 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/07 10:33:03 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/02 13:55:46 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/02 13:57:24 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Vérifie s'il s'agit d'un caractère imprimable, y compris l'espace. */
-/* Les valeurs renvoyées sont non nulles si le caractère c entre dans la 
-catégorie testée, et zéro sinon */
-
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_isprint(int c)
 {
@@ -22,3 +19,14 @@ int	ft_isprint(int c)
 		return (1);
 	return (0);
 }
+/* 
+int main (void)
+    {
+        int c;
+        c = ft_isprint(35);
+        printf("%d", c);
+        return (0);
+    }
+
+
+ */

@@ -3,32 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/10 12:46:47 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/13 13:30:05 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/03 19:55:47 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/03 20:00:43 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Alloue (avec malloc) et retourne une copie de la chaine ’s1’, sans les 
-caractères spécifiés dans ’set’ au début et à la fin de la chaine de 
-caractères. */
-/* La chaine de caractères trimmée. NULL si l’allocation échoue. */
-
 #include "libft.h"
+#include <stddef.h>
+#include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+static	int	to_trim(const char *set, char c);
+static	char	*new_str(const char *s1, size_t start, size_t len);
+
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	size_t		len;
-	char		*tab;
+	int	i;
+	int	j;
 
-	if (!s1 || !set)
+	i = 0;
+	j = ft_strlen(s1) - 1;
+	if (ft_strlen(s1) == 0)
+		return (ft_strdup(""));
+	while (to_trim(set, s1[i]))
+		i++;
+	while (to_trim(set, s1[j]))
+		j--;
+	return (new_str(s1, i, j - i + 1));
+}
+
+static char	*new_str(const char *s1, size_t start, size_t len)
+{
+	char	*str;
+	size_t	i;
+
+	if (len <= 0 || start >= ft_strlen(s1))
+		return (ft_strdup(""));
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
 		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	len = ft_strlen(s1);
-	while (len && ft_strchr(set, s1[len]))
-		len--;
-	tab = ft_substr((char *)s1, 0, len + 1);
-	return (tab);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s1[start + i];
+		i++;
+	}
+	return (str);
+}
+
+static	int	to_trim(const char *set, char c)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }

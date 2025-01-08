@@ -3,36 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcollet <gcollet@student.42quebec.com>     +#+  +:+       +#+        */
+/*   By: ealmonte <ealmonte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/08 12:51:40 by gcollet           #+#    #+#             */
-/*   Updated: 2021/05/13 16:40:52 by gcollet          ###   ########.fr       */
+/*   Created: 2024/10/03 18:42:32 by ealmonte          #+#    #+#             */
+/*   Updated: 2024/10/03 19:00:32 by ealmonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* La fonction strdup() renvoie un pointeur sur une nouvelle chaîne de 
-caractères qui est dupliquée depuis s. La mémoire occupée par cette nouvelle 
-chaîne est obtenue en appelant malloc(), et peut (doit) donc être libérée avec
-free().*/
-/* La fonction strdup() renvoie un pointeur sur la chaîne dupliquée, ou NULL
-s'il n'y avait pas assez de mémoire.  */
+#include "libft.h" 
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
-#include "libft.h"
-
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	char	*tab;
-	int		i;
+	size_t	leng;
+	char	*dup;
 
-	i = 0;
-	tab = (char *)malloc(sizeof(*tab) * (ft_strlen(s) + 1));
-	if (!tab)
-		return (NULL);
-	while (s[i])
+	leng = ft_strlen(s1) + 1;
+	if (s1 == NULL)
 	{
-		tab[i] = s[i];
-		i++;
+		return (NULL);
 	}
-	tab[i] = '\0';
-	return (tab);
+	dup = (char *)malloc((leng) * sizeof(char));
+	if (dup == NULL)
+	{
+		return (NULL);
+	}
+	ft_strlcpy (dup, s1, leng);
+	return (dup);
 }
+
+/* int main (void) {
+	char *c;
+	c = ft_strdup("ahsgahshghhasf");
+	printf("%s", c);
+	free(c); 
+	return (0);
+} */
